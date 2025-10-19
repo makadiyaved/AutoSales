@@ -48,34 +48,34 @@ CREATE TABLE IF NOT EXISTS inquiries (
 -- Insert sample data for cars
 INSERT INTO cars (make, model, year, price, mileage, color, transmission, fuel_type, description, image_url, category) VALUES
 -- SUV Category
-('Toyota', 'RAV4', 2023, 32000.00, 5000, 'Silver', 'Automatic', 'Gasoline', 'Spacious and reliable SUV with excellent fuel efficiency.', 'images/cars/rav4.jpg', 'suv'),
-('Honda', 'CR-V', 2023, 34000.00, 3000, 'Blue', 'Automatic', 'Gasoline', 'Comfortable and practical SUV with advanced safety features.', 'images/cars/crv.jpg', 'suv'),
-('BMW', 'X5', 2023, 65000.00, 2000, 'Black', 'Automatic', 'Hybrid', 'Luxurious SUV with powerful performance and premium features.', 'images/cars/x5.jpg', 'suv'),
+('Toyota', 'RAV4', 2023, 32000.00, 5000, 'Silver', 'Automatic', 'Gasoline', 'Spacious and reliable SUV with excellent fuel efficiency.', 'images/cars/toyota rav4.jpg', 'suv'),
+('Honda', 'CR-V', 2023, 34000.00, 3000, 'Blue', 'Automatic', 'Gasoline', 'Comfortable and practical SUV with advanced safety features.', 'images/cars/honda cr-v.jpg', 'suv'),
+('BMW', 'X5', 2023, 65000.00, 2000, 'Black', 'Automatic', 'Hybrid', 'Luxurious SUV with powerful performance and premium features.', 'images/cars/bmw x5.jpg', 'suv'),
 
 -- Supercar Category
-('Ferrari', 'F8 Tributo', 2023, 275000.00, 1000, 'Red', 'Automatic', 'Gasoline', 'Exhilarating performance and stunning design.', 'images/cars/f8.jpg', 'supercar'),
-('Lamborghini', 'Huracan', 2023, 245000.00, 800, 'Yellow', 'Automatic', 'Gasoline', 'Iconic supercar with breathtaking performance.', 'images/cars/huracan.jpg', 'supercar'),
-('McLaren', '720S', 2023, 295000.00, 500, 'Orange', 'Automatic', 'Gasoline', 'Cutting-edge technology meets extraordinary performance.', 'images/cars/720s.jpg', 'supercar'),
+('Ferrari', 'F8 Tributo', 2023, 275000.00, 1000, 'Red', 'Automatic', 'Gasoline', 'Exhilarating performance and stunning design.', 'images/cars/ferrari-f8-tributo.jpg', 'supercar'),
+('Lamborghini', 'Huracan', 2023, 245000.00, 800, 'Yellow', 'Automatic', 'Gasoline', 'Iconic supercar with breathtaking performance.', 'images/cars/lamborghini huracan.jpg', 'supercar'),
+('McLaren', '720S', 2023, 295000.00, 500, 'Orange', 'Automatic', 'Gasoline', 'Cutting-edge technology meets extraordinary performance.', 'images/cars/mclaren.jpg', 'supercar'),
 
 -- Luxury Category
-('Mercedes-Benz', 'S-Class', 2023, 115000.00, 1500, 'Silver', 'Automatic', 'Hybrid', 'The pinnacle of luxury and comfort.', 'images/cars/sclass.jpg', 'luxury'),
-('Lexus', 'LS', 2023, 85000.00, 2000, 'White', 'Automatic', 'Hybrid', 'Japanese luxury with exceptional reliability.', 'images/cars/ls.jpg', 'luxury'),
-('Audi', 'A8', 2023, 95000.00, 1800, 'Black', 'Automatic', 'Gasoline', 'Sophisticated luxury with advanced technology.', 'images/cars/a8.jpg', 'luxury'),
+('Mercedes-Benz', 'S-Class', 2023, 115000.00, 1500, 'Silver', 'Automatic', 'Hybrid', 'The pinnacle of luxury and comfort.', 'images/cars/mercedes-benz s-class.jpg', 'luxury'),
+('Lexus', 'LS', 2023, 85000.00, 2000, 'White', 'Automatic', 'Hybrid', 'Japanese luxury with exceptional reliability.', 'images/cars/lexus ls.jpg', 'luxury'),
+('Audi', 'A8', 2023, 95000.00, 1800, 'Black', 'Automatic', 'Gasoline', 'Sophisticated luxury with advanced technology.', 'images/cars/audi a8.jpg', 'luxury'),
 
 -- Sports Car Category
-('Porsche', '911', 2023, 125000.00, 1000, 'Black', 'Manual', 'Gasoline', 'Iconic sports car with perfect balance.', 'images/cars/911.jpg', 'sports'),
-('Chevrolet', 'Corvette', 2023, 75000.00, 1500, 'Red', 'Automatic', 'Gasoline', 'American muscle with modern performance.', 'images/cars/corvette.jpg', 'sports'),
-('Nissan', 'GT-R', 2023, 115000.00, 1200, 'Grey', 'Automatic', 'Gasoline', 'Supercar performance at a sports car price.', 'images/cars/gtr.jpg', 'sports'),
+('Porsche', '911', 2023, 125000.00, 1000, 'Black', 'Manual', 'Gasoline', 'Iconic sports car with perfect balance.', 'images/cars/porsche 911.jpg', 'sports'),
+('Chevrolet', 'Corvette', 2023, 75000.00, 1500, 'Red', 'Automatic', 'Gasoline', 'American muscle with modern performance.', 'images/cars/chevrolet corvette.jpg', 'sports'),
+('Nissan', 'GT-R', 2023, 115000.00, 1200, 'Grey', 'Automatic', 'Gasoline', 'Supercar performance at a sports car price.', 'images/cars/nissan gt-r.jpg', 'sports'),
 
 -- Electric Category
-('Tesla', 'Model S', 2023, 95000.00, 2000, 'White', 'Automatic', 'Electric', 'Luxury electric sedan with incredible range.', 'images/cars/models.jpg', 'electric'),
-('Porsche', 'Taycan', 2023, 105000.00, 1500, 'Blue', 'Automatic', 'Electric', 'Electric performance with Porsche DNA.', 'images/cars/taycan.jpg', 'electric'),
-('Audi', 'e-tron GT', 2023, 102000.00, 1800, 'Silver', 'Automatic', 'Electric', 'Premium electric grand tourer.', 'images/cars/etron.jpg', 'electric'),
+('Tesla', 'Model S', 2023, 95000.00, 2000, 'White', 'Automatic', 'Electric', 'Luxury electric sedan with incredible range.', 'images/cars/tesla model s.jpg', 'electric'),
+('Porsche', 'Taycan', 2023, 105000.00, 1500, 'Blue', 'Automatic', 'Electric', 'Electric performance with Porsche DNA.', 'images/cars/porsche taycan.jpg', 'electric'),
+('Audi', 'e-tron GT', 2023, 102000.00, 1800, 'Silver', 'Automatic', 'Electric', 'Premium electric grand tourer.', 'images/cars/audi e-tron gt.jpg', 'electric'),
 
 -- Classic Category
-('Ford', 'Mustang', 1969, 85000.00, 45000, 'Red', 'Manual', 'Gasoline', 'Iconic muscle car in pristine condition.', 'images/cars/classic-mustang.jpg', 'classic'),
-('Chevrolet', 'Camaro', 1967, 75000.00, 38000, 'Blue', 'Manual', 'Gasoline', 'Classic American muscle car.', 'images/cars/classic-camaro.jpg', 'classic'),
-('Porsche', '911', 1973, 120000.00, 42000, 'Yellow', 'Manual', 'Gasoline', 'Timeless classic in perfect condition.', 'images/cars/classic-911.jpg', 'classic');
+('Ford', 'Mustang', 1969, 85000.00, 45000, 'Red', 'Manual', 'Gasoline', 'Iconic muscle car in pristine condition.', 'images/cars/ford mustang.jpg', 'classic'),
+('Chevrolet', 'Camaro', 1967, 75000.00, 38000, 'Blue', 'Manual', 'Gasoline', 'Classic American muscle car.', 'images/cars/chevrolet camaro.jpg', 'classic'),
+('Porsche', '911', 1973, 120000.00, 42000, 'Yellow', 'Manual', 'Gasoline', 'Timeless classic in perfect condition.', 'images/cars/porsche 911.jpg', 'classic');
 
 -- Insert sample admin user
 INSERT INTO users (username, email, password, role) VALUES

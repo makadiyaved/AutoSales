@@ -1,7 +1,4 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
 require_once 'config/database.php';
 
 $error = '';
@@ -12,7 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
-    $remember = isset($_POST['remember']) ? true : false;
 
     if (empty($username) || empty($email) || empty($password) || empty($confirm_password)) {
         $error = "Please fill in all fields";
@@ -39,9 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 
                 try {
                     $stmt->execute([$username, $email, $hashed_password]);
-                    $_SESSION['signup_success'] = true;
-                    header("Location: login.php");
-                    exit();
+                    $success = "Registration successful! Please login with your credentials.";
                 } catch(PDOException $e) {
                     $error = "Registration failed. Please try again.";
                 }
@@ -92,11 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="form-group">
                     <label for="confirm_password">Confirm Password:</label>
                     <input type="password" id="confirm_password" name="confirm_password" required>
-                </div>
-
-                <div class="form-group checkbox-group">
-                    <input type="checkbox" id="remember" name="remember">
-                    <label for="remember">Remember me</label>
                 </div>
                 
                 <button type="submit" class="btn">Sign Up</button>

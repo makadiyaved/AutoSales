@@ -1,22 +1,12 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
 require_once 'config/database.php';
 
 $error = '';
 $success = '';
 
-// Check for signup success message
-if (isset($_SESSION['signup_success'])) {
-    $success = "Registration successful! Please login with your credentials.";
-    unset($_SESSION['signup_success']);
-}
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
-    $remember = isset($_POST['remember']) ? true : false;
 
     if (empty($email) || empty($password)) {
         $error = "Please fill in all fields";
@@ -26,25 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user = $stmt->fetch();
 
         if ($user && password_verify($password, $user['password'])) {
-            // Set session
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['role'] = $user['role'];
-
-            // Set cookies if remember me is checked
-            if ($remember) {
-                // Create a unique token
-                $token = bin2hex(random_bytes(32));
-                
-                // Store token in database
-                $stmt = $pdo->prepare("UPDATE users SET remember_token = ? WHERE id = ?");
-                $stmt->execute([$token, $user['id']]);
-                
-                // Set cookies for 30 days
-                setcookie('remember_token', $token, time() + (86400 * 30), '/', '', true, true);
-                setcookie('user_id', $user['id'], time() + (86400 * 30), '/', '', true, true);
-            }
-
+            // Login successful - redirect to home page
             header("Location: index.php");
             exit();
         } else {
@@ -85,11 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="form-group">
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" required>
-                </div>
-
-                <div class="form-group checkbox">
-                    <input type="checkbox" id="remember" name="remember">
-                    <label for="remember">Remember me</label>
                 </div>
                 
                 <button type="submit" class="btn">Login</button>

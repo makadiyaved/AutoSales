@@ -1,7 +1,7 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+// if (session_status() === PHP_SESSION_NONE) {
+//     session_start();
+// }
 require_once 'auth.php';
 ?>
 <!DOCTYPE html>
@@ -38,6 +38,8 @@ require_once 'auth.php';
                 <?php endif; ?>
             </ul>
         </nav>
+<<<<<<< HEAD
     </header>
-</body>
-</html> 
+=======
+    </header>
+>>>>>>> ce9726fffe4684dea200eb63af9f4d30d9edc54f
