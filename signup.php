@@ -1,5 +1,6 @@
 <?php
 require_once 'config/database.php';
+require_once 'includes/mail_functions.php';
 
 $error = '';
 $success = '';
@@ -35,7 +36,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 
                 try {
                     $stmt->execute([$username, $email, $hashed_password]);
-                    $success = "Registration successful! Please login with your credentials.";
+                    
+                    // Send welcome email
+                    $emailSent = sendWelcomeEmail($email, $username);
+                    $emailError = '';
+                    
+                    if (!$emailSent) {
+                        $emailError = " However, we encountered an issue sending your welcome email. Please contact support if you need assistance.";
+                    }
+                    
+                    $success = "Registration successful!" . 
+                              ($emailSent ? " A welcome email has been sent to $email." : $emailError) . 
+                              " Redirecting to login page...";
+                    
+                    echo "<script>
+                        setTimeout(function() {
+                            window.location.href = 'login.php';
+                        }, 3000);
+                    </script>";
                 } catch(PDOException $e) {
                     $error = "Registration failed. Please try again.";
                 }
