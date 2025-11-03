@@ -4,6 +4,11 @@ require_once 'config/database.php';
 $error = '';
 $success = '';
 
+// Check for logout message
+if (isset($_GET['message']) && $_GET['message'] == 'logged_out') {
+    $success = "You have been successfully logged out.";
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
@@ -16,7 +21,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user = $stmt->fetch();
 
         if ($user && password_verify($password, $user['password'])) {
-            // Login successful - redirect to home page
+            // Start session if not already started
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+            
+            // Set session variables
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['role'] = $user['role'];
+            $_SESSION['profile_image'] = $user['profile_image'] ?? 'default-avatar.png';
+            
+            // Redirect to home page
             header("Location: index.php");
             exit();
         } else {
@@ -63,6 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </form>
             
             <p class="auth-link">Don't have an account? <a href="signup.php">Sign Up</a></p>
+            <p class="auth-link"><a href="forgot-password.php">Forgot your password?</a></p>
         </div>
     </div>
 
