@@ -1,16 +1,9 @@
 <?php
-// Database connection
-$host = 'localhost';
-$dbname = 'car_dealership';
-$username = 'root';
-$password = '';
+// Include header first to start session
+require_once 'header.php';
 
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-}
+// Database connection
+require_once 'config/database.php';
 
 $message = '';
 
@@ -46,113 +39,8 @@ $cars = $pdo->query("SELECT id, make, model, year FROM cars WHERE status = 'avai
     <title>Contact Us - AutoSales</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        .contact-container {
-            padding: 100px 5% 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .contact-info {
-            padding: 2rem;
-            background: #f8f9fa;
-            border-radius: 8px;
-        }
-
-        .contact-form {
-            padding: 2rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #2c3e50;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        .form-group textarea {
-            height: 150px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            background: #3498db;
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            background: #2980b9;
-        }
-
-        .alert {
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-radius: 4px;
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .contact-info-item {
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-info-item i {
-            margin-right: 0.5rem;
-            color: #3498db;
-        }
-
-        @media (max-width: 768px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">
-                <h1>AutoSales</h1>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="inventory.php">Inventory</a></li>
-                <li><a href="about.php">About Us</a></li>
-                <li><a href="contact.php">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
     <main class="contact-container">
         <h1>Contact Us</h1>
         

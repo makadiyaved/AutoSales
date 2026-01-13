@@ -1,7 +1,4 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
 require_once 'config/database.php';
 
 // Function to check and handle remember me cookies

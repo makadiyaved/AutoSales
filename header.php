@@ -3,6 +3,12 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require_once 'auth.php';
+
+// Debug information
+// echo '<pre>';
+// echo 'Session Data: ';
+// print_r($_SESSION);
+// echo '</pre>';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,11 +33,26 @@ require_once 'auth.php';
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <li class="user-menu">
                         <div class="profile-container">
-                            <img src="uploads/profile/<?php echo htmlspecialchars($_SESSION['profile_image']); ?>" 
+                            <?php 
+                            // Debug info - uncomment to see session data
+                            // echo '<!-- Session Data: ' . print_r($_SESSION, true) . ' -->';
+                            
+                            $profileImage = 'uploads/profile/default-avatar.png';
+                            if (isset($_SESSION['profile_image'])) {
+                                $profileImage = 'uploads/profile/' . htmlspecialchars($_SESSION['profile_image']);
+                                // Check if file exists, if not use default
+                                if (!file_exists($profileImage)) {
+                                    $profileImage = 'uploads/profile/default-avatar.png';
+                                }
+                            }
+                            $username = isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : 'User';
+                            ?>
+                            <img src="<?php echo $profileImage; ?>" 
                                  alt="Profile" 
                                  class="profile-image"
-                                 onerror="this.src='uploads/profile/default-avatar.png'">
-                            <span class="username"><?php echo htmlspecialchars($_SESSION['username']); ?></span>
+                                 onerror="this.src='uploads/profile/default-avatar.png'"
+                                 onload="console.log('Image loaded:', this.src)">
+                            <span class="username"><?php echo $username; ?></span>
                         </div>
                         <div class="dropdown-menu">
                             <a href="profile.php" class="dropdown-item">My Profile</a>
@@ -45,61 +66,6 @@ require_once 'auth.php';
                     <li><a href="login.php" class="login-link">Login</a></li>
                     <li><a href="signup.php" class="signup-link">Sign Up</a></li>
                 <?php endif; ?>
-                <style>
-                    .user-menu {
-                        position: relative;
-                        display: inline-block;
-                        padding: 8px 15px;
-                        border-radius: 4px;
-                    }
-                    .profile-container {
-                        display: flex;
-                        align-items: center;
-                        gap: 10px;
-                        cursor: pointer;
-                        padding: 0;
-                        border-radius: 20px;
-                        transition: background-color 0.3s;
-                        height: 32px;
-                    }
-                    .profile-container:hover {
-                        background-color: rgba(255, 255, 255, 0.1);
-                    }
-                    .profile-image {
-                        width: 36px;
-                        height: 36px;
-                        border-radius: 50%;
-                        object-fit: cover;
-                        border: 2px solid #fff;
-                    }
-                    .dropdown-menu {
-                        display: none;
-                        position: absolute;
-                        right: 0;
-                        background-color: #fff;
-                        min-width: 200px;
-                        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-                        border-radius: 4px;
-                        z-index: 1;
-                        margin-top: 10px;
-                    }
-                    .dropdown-menu a {
-                        color: #333;
-                        padding: 10px 15px;
-                        text-decoration: none;
-                        display: block;
-                        transition: background-color 0.3s;
-                    }
-                    .dropdown-menu a:hover {
-                        background-color: #f5f5f5;
-                    }
-                    .dropdown-menu.show {
-                        display: block;
-                    }
-                    .profile-container {
-                        cursor: pointer;
-                    }
-                </style>
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         const profileContainer = document.querySelector('.profile-container');
